@@ -1,0 +1,15 @@
+.Timer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 40px;
+  }
+  .CountdownCircleTimer{
+    padding: 225px !important;
+  }
+  .time {
+    font-size: 32px;
+  }
+  

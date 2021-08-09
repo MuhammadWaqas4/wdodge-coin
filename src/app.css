@@ -1,0 +1,131 @@
+
+.appMain{
+    font-family: 'Cabin', sans-serif;
+    background: rgb(1,30,74);
+    background: linear-gradient(180deg, rgba(1,30,74,1) 22%, rgba(0,187,247,1) 82%);
+    padding: 0px 50px 0px 50px !important;
+    overflow-x: hidden !important;
+}
+.card{
+    border-radius: 20px !important;
+}
+.btn{
+    background-color: #011e4a!important;
+    color: #fff !important;
+}
+/********************** Navbar starts******************* */
+.nav_main_div{
+    background-color: #011e4a;
+    color: #fff !important;
+    padding: 5px 20px 5px 20px;
+}
+.nav_p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 130px;
+    border-radius: 50px;
+    color:#000;
+    padding: 0px 20px;
+    
+}
+.nav_p>p{
+    margin: 7px 0px 7px 0px;
+    /* margin-bottom: 0px !important; */
+}
+
+/************ Navbar Ends ****************************/
+
+
+/************ banner Starts ****************************/
+.banner_inner_div{
+    width: 50vw !important;
+}
+.banner_Main{
+    /* box-shadow: 2px 2px 4px #011e4a; */
+    border-radius: 20px;
+    color: #fff;
+    height: 70vh;
+    background: rgb(1,30,74);
+/* background: linear-gradient(180deg, rgba(1,30,74,1) 22%, rgba(0,187,247,1) 82%); */
+    /* background: rgb(131,245,7);
+background: linear-gradient(0deg, rgba(131,245,7,1) 22%, rgba(241,220,21,1) 82%); */
+}
+.banner_img_div{
+    margin-top: 10px;
+    position: absolute;
+    top: 0px;
+}
+/************ banner Ends ****************************/
+.Contract_text_size{
+font-size: larger;
+}
+/************ Card Starts ****************************/
+.fa-fire{
+    color: orangered !important;
+}
+.CardsCard_1{
+    background-color: #00bbf7 !important;
+    color: white !important;
+}
+.timerDiv{
+    margin-top: 30px;
+}
+/************ Card Ends ****************************/
+
+/************ Feature Starts  ****************************/
+.featureCards{
+    background-color: #011e4a !important;
+    color:#fff !important;
+}
+/************ Feature  Ends ****************************/
+
+
+/************ Tokenomics Starts  ****************************/
+
+.Tokenomics_bg_1{
+    border-radius: 20px 20px 0px 0px;
+    background-color: #011e4a;
+}
+.Tokenomics_bg_2{
+    border-radius: 0px 0px 20px 20px;
+    background-color: #011e4a;
+}
+.Tokenomics_bg{
+    background-color: #011e4a;
+    border-radius: 20px;
+}
+/************ Tokenomics   Ends **************************/
+
+/************ Footer   Starts ****************************/
+.Footer_Main{
+    background-color: #011e4a;
+    border-radius: 20px;
+    /* margin: 0 !important; */
+    /* margin-top: 20px !important; */
+    margin: 25px 0px 0px 0px !important;
+}
+/************ Footer   Ends ******************************/
+
+     @media(max-width:610px){
+        .appMain{
+            padding: 0px 10px 0px 10px !important;
+        }
+        .banner_img_div{
+            margin-top: 50px;
+            /* margin-bottom: 30px; */
+            position: absolute;
+            top: 25px;
+        }
+        .banner_inner_div{
+            width: 90vw !important;
+        }
+        .timerDiv{
+            margin-top: 0px;
+        }
+        .Contract_text_size{
+            font-size:small;
+            }
+       
+    } 
