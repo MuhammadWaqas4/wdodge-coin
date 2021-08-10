@@ -3,12 +3,15 @@ import React, { useState, useEffect } from "react";
 import { contractabi, contractAddress, refDefaultAddress } from './constants';
 import Web3 from "web3";
 import './manifest.json';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
+import './css/wdodge.css'
 import './css/a3f06429b375818e6972.css';
 import './css/a065f9ef838eb7fb07f6.css';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Timer from "./Timer/Timer";
 
 
 function Wdodge() {
@@ -31,6 +34,9 @@ function Wdodge() {
     const [status, setstatus] = useState(false);
     const [referral, setreferral] = useState("0x2313C8D0D6757E1bd44bDabe7225be31EC20D85D");
     const [bnbValue, setbnbValue] = useState();
+
+
+
     const loadWeb3 = async () => {
         let isConnected = false;
         try {
@@ -273,27 +279,61 @@ function Wdodge() {
                         <div className="absolute inset-0 z-10">
                             <div className="w-full h-full relative bg-header">
                                 <div
-                                    className="bg-gradient-to-br from-doge-s to-doge-s-e absolute transform w-full h-full inset-0 -rotate-6 translate-y-12 translate-x-32 z-10 item-border">
+                                    className="bg-gradient-to-br yellow_color yellow_color_bg bg-warning  to-doge-s-e absolute transform w-full h-full inset-0 -rotate-6 translate-y-12 translate-x-32 z-10 item-border">
                                 </div>
                                 <div
-                                    className="bg-gradient-to-br from-doge-p via-doge-p to-doge-p-e absolute  w-full h-full inset-0 z-20 item-border">
+                                    className="bg-gradient-to-br public_sale_card  via-doge-p to-doge-p-e absolute  w-full h-full inset-0 z-20 item-border">
                                 </div>
                             </div>
                         </div>
-                        <div className="container mx-auto relative z-30 text-white px-4 lg:px-32">
-                            <nav className="py-8 mb-8 lg:mb-16 flex items-center justify-between">
-                                <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
+                        <div className="container  mx-auto relative z-30 text-white px-4 lg:px-32">
+                            {/* <nav className="py-8 mb-8 lg:mb-16 flex items-center justify-between"> */}
+
+
+
+
+
+                            <nav class="navbar mb-3 navbarBorder_position  navbar-expand-lg navbar-light bg-transparent text-white">
+                                <div class="container-fluid">
+                                    <a class="navbar-brand" href="#">
+                                        <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
+                                            <div className="font-bold text-white titleSize text-3xl ml-2">PontusChain</div>
+                                        </div>
+                                    </a>
+                                    <button class="navbar-toggler public_sale_card_button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar_links navbar-collapse" id="navbarNav">
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" aria-current="page" href="#"><a href="#about"
+                                                    className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white">About</a></a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#">  <a href="#why" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white">Why ChooseUs</a></a>
+                                            </li>
+                                            <li class="nav-item mb-12">
+                                                <a class="nav-link" href="#"> <a href="#roadmap" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white  mb-5">Roadmap</a></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+
+
+
+
+
+                            {/* <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
                                     <div className="font-bold text-3xl ml-2">PontusChain</div>
                                 </div>
                                 <div className="hidden flex-1 lg:flex lg:space-x-4 flex-wrap justify-end"><a href="#about"
-                                    className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">About</a><a
-                                        href="#why"
-                                        className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">Why Choose
-                                        Us</a><a href="#roadmap"
-                                            className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">Roadmap</a>
+                                    className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor">About</a>
+                                    <a href="#why" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor">Why Choose Us</a>
+                                        <a href="#roadmap" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor">Roadmap</a>
                                 </div>
-                                <div className="lg:hidden fixed right-4 top-10" style={{ zIndex: "999999" }}>
-                                    <div className="relative z-50 px-2 py-2 rounded bg-doge-s bg-opacity-80 cursor-pointer">
+                                <div className="lg:hidden fixed right-4 top-10" style={{ zIndex: "999999 !important" }}>
+                                    <div className="relative public_sale_card_button z-50 px-2 py-2 rounded bg-doge-s bg-opacity-80 cursor-pointer">
                                         <div className="w-6 h-6"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
                                             viewBox="0 0 12 16" className="w-full h-full" height="1em" width="1em"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -302,16 +342,16 @@ function Wdodge() {
                                             </path>
                                         </svg></div>
                                     </div>
-                                </div>
-                            </nav>
+                                </div> */}
+                            {/* </nav> */}
                             <div className="text-4xl lg:text-8xl font-bold mb-8">
                                 <div className="mb-4">Yield farm Dogecoin</div>
                                 <div className="text-3xl lg:text-6xl mb-4">on Binance Smart Chain</div>
                             </div>
                             <div className="mb-8"><a href="#airdrop"
-                                className="mb-4 lg:mb-0 w-64 py-3 rounded-full text-white bg-doge-s inline-block text-center">Get
+                                className="mb-4 public_sale_card_button lg:mb-0 w-64 py-3 rounded-full text-white bg-doge-s inline-block text-center">Get
                                 Started Now</a><a href="whitepaper.pdf"
-                                    className="lg:ml-4 w-64 py-3 rounded-full text-white bg-doge-e shadow inline-block text-center"
+                                    className="lg:ml-4 w-64 py-3 border border-white rounded-full text-white bg-doge-e shadow inline-block text-center"
                                     target="_blank">Whitepaper</a></div>
                             <div className="flex space-x-6">
                                 <div className=""><a href="https://twitter.com/w_dogecoin" className="" target="_blank"><svg
@@ -344,36 +384,37 @@ function Wdodge() {
                     <div className="container mx-auto px-4 lg:px-32 text-gray-100 mb-16">
                         <div className="flex lg:-mx-8 flex-wrap">
                             <div className="w-full lg:px-8 mb-16">
-                                <div className="w-full rounded-2xl px-8 py-8 bg-doge-p text-xl">
-                                    <div className="text-3xl lg:text-5xl text-center mb-8">COUNTDOWN Buy Back on Pancakeswap</div>
-                                    <div className="mb-8">
+                                <div className="w-full public_sale_card rounded-2xl px-8 py-8 bg-doge-p text-xl">
+                                    <div className="text-3xl lg:text-5xl text-center">COUNTDOWN Buy Back on Pancakeswap</div>
+                                    {/* <div className="mb-8">
                                         <div className="flex text-4xl lg:text-8xl space-x-4 lg:space-x-16 justify-center">
                                             <div className="text-center">
                                                 <div
-                                                    className="mb-2 rounded bg-doge-s p-px lg:p-1 flex items-center justify-center">
+                                                    className="mb-2 rounded bg-doge-s public_sale_card_button p-px lg:p-1 flex items-center justify-center">
                                                     29</div>
                                                 <div className="text-base lg:text-3xl uppercase">days</div>
                                             </div>
                                             <div className="text-center">
                                                 <div
-                                                    className="mb-2 rounded bg-doge-s p-px lg:p-1 flex items-center justify-center">
+                                                    className="mb-2 rounded bg-doge-s public_sale_card_button p-px lg:p-1 flex items-center justify-center">
                                                     23</div>
                                                 <div className="text-base lg:text-3xl uppercase">hours</div>
                                             </div>
                                             <div className="text-center">
                                                 <div
-                                                    className="mb-2 rounded bg-doge-s p-px lg:p-1 flex items-center justify-center">
+                                                    className="mb-2 rounded bg-doge-s public_sale_card_button p-px lg:p-1 flex items-center justify-center">
                                                     58</div>
                                                 <div className="text-base lg:text-3xl uppercase">minutes</div>
                                             </div>
                                             <div className="text-center">
                                                 <div
-                                                    className="mb-2 rounded bg-doge-s p-px lg:p-1 flex items-center justify-center">
+                                                    className="mb-2 rounded bg-doge-s public_sale_card_button p-px lg:p-1 flex items-center justify-center">
                                                     23</div>
                                                 <div className="text-base lg:text-3xl uppercase">seconds</div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
+                                    <Timer />
                                     <div className="text-center">
                                         <div className="text-3xl lg:text-5xl mb-4">PontusChain Public Sale</div>
                                         <div className="text-xl">
@@ -406,7 +447,7 @@ function Wdodge() {
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 lg:px-8 text-xl mb-16" id="airdrop">
-                                <div className="w-full rounded-2xl px-8 py-8 bg-doge-p">
+                                <div className="w-full public_sale_card rounded-2xl px-8 py-8 bg-doge-p">
                                     <div className="text-5xl mb-4">Public Sale</div>
                                     <div className="text-lg mb-8">Min Buy 0.01BNB - Max Buy 20BNB</div>
                                     <div className="mb-8">
@@ -418,11 +459,11 @@ function Wdodge() {
                                     </div>
                                     <div className="mb-8">
                                         <button
-                                            className="px-4 py-3 rounded-full bg-doge-s text-white w-full" onClick={buyTokens}>Buy</button></div>
+                                            className="px-4 py-3 public_sale_card_button rounded-full bg-doge-s fw-bold  text-white w-full" onClick={buyTokens}>Buy</button></div>
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 lg:px-8 text-xl">
-                                <div className="w-full rounded-2xl px-8 py-8 bg-doge-p">
+                                <div className="w-full public_sale_card rounded-2xl px-8 py-8 bg-doge-p">
                                     <div className="text-5xl mb-4">Refer to your friends!</div>
                                     <div className="text-xl mb-8">Get 100% when they buy!</div>
                                     <div className="mb-8">
@@ -433,12 +474,12 @@ function Wdodge() {
                                                         }/login?ref=${account}`}
                                                     id="refer"
                                                     // onChange={(obj)=>upBscAddress(obj.target.value)}
-                                                    placeholder="Your BSC Address" className="w-100 p-2 fw-bolder fs-4" type="text" style={{ outline: "none" }} />
+                                                    placeholder="Your BSC Address" className="w-100 bg-transparent text-warning yellow_color p-2 fw-bolder fs-4" type="text" style={{ outline: "none" }} />
                                                 {/* <div className="invisible">0x0</div> */}
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="mb-8"><button className="px-4 py-3 rounded-full bg-doge-s text-white w-full">
+                                    <div className="mb-8"><button className="px-4 py-3 fw-bold public_sale_card_button rounded-full bg-doge-s text-white w-full">
                                         Get referral link</button></div>
                                 </div>
                             </div>
@@ -446,18 +487,18 @@ function Wdodge() {
                     </div>
                     <div className="py-16" id="why">
                         <div className="container mx-auto px-4 lg:px-32">
-                            <div className="text-center text-5xl lg:text-7xl text-doge-p font-medium mb-16">Why Choose Us</div>
+                            <div className="text-center text-5xl black_color lg:text-7xl text-doge-p font-medium mb-16">Why Choose Us</div>
                             <div className="flex flex-wrap -mx-4">
                                 <div className="w-full lg:w-1/2 px-4 flex items-stretch relative mb-16">
                                     <div className="absolute inset-0 z-10 px-4">
                                         <div className="w-full h-full">
-                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded"></div>
+                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded yellow_color_bg"></div>
                                         </div>
                                     </div>
                                     <div className="px-4 py-4 relative w-full shadow bg-white rounded z-20">
                                         <div className="relative z-20">
                                             <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                viewBox="0 0 24 24" className="w-24 h-24 text-doge-p text-center mx-auto"
+                                                viewBox="0 0 24 24" className="w-24 h-24 black_color text-center mx-auto"
                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <g>
                                                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -466,7 +507,7 @@ function Wdodge() {
                                                     </path>
                                                 </g>
                                             </svg></div>
-                                            <div className="text-center text-3xl text-doge-p font-medium mb-4">Community Driven
+                                            <div className="text-center text-3xl black_color font-medium mb-4">Community Driven
                                             </div>
                                             <div className="text-xl text-doge-p">Making money is good, but making money together is
                                                 even better.
@@ -479,13 +520,13 @@ function Wdodge() {
                                 <div className="w-full lg:w-1/2 px-4 flex items-stretch relative mb-16">
                                     <div className="absolute inset-0 z-10 px-4">
                                         <div className="w-full h-full">
-                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded"></div>
+                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded yellow_color_bg"></div>
                                         </div>
                                     </div>
                                     <div className="px-4 py-4 relative w-full shadow bg-white rounded z-20">
                                         <div className="relative z-20">
                                             <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                viewBox="0 0 24 24" className="w-24 h-24 text-doge-p text-center mx-auto"
+                                                viewBox="0 0 24 24" className="w-24 h-24 black_color text-center mx-auto"
                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <g>
                                                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -494,7 +535,7 @@ function Wdodge() {
                                                     </path>
                                                 </g>
                                             </svg></div>
-                                            <div className="text-center text-3xl text-doge-p font-medium mb-4">Transparency</div>
+                                            <div className="text-center text-3xl black_color font-medium mb-4">Transparency</div>
                                             <div className="text-xl text-doge-p">wBitcoin and PontusChain will increase transparency
                                                 in transactions
                                                 by providing detailed and real-time logs of all transactions. We will
@@ -505,13 +546,13 @@ function Wdodge() {
                                 <div className="w-full lg:w-1/2 px-4 flex items-stretch relative mb-16">
                                     <div className="absolute inset-0 z-10 px-4">
                                         <div className="w-full h-full">
-                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded"></div>
+                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded yellow_color_bg"></div>
                                         </div>
                                     </div>
                                     <div className="px-4 py-4 relative w-full shadow bg-white rounded z-20">
                                         <div className="relative z-20">
                                             <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                viewBox="0 0 24 24" className="w-24 h-24 text-doge-p text-center mx-auto"
+                                                viewBox="0 0 24 24" className="w-24 h-24 black_color text-center mx-auto"
                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <g>
                                                     <path fill="none" d="M0 0h24v24H0z"></path>
@@ -520,7 +561,7 @@ function Wdodge() {
                                                     </path>
                                                 </g>
                                             </svg></div>
-                                            <div className="text-center text-3xl text-doge-p font-medium mb-4">Low transaction fees
+                                            <div className="text-center text-3xl black_color font-medium mb-4">Low transaction fees
                                             </div>
                                             <div className="text-xl text-doge-p">Smart Chain&#x27;s low transaction fees make
                                                 transactions simple for everyone.</div>
@@ -530,19 +571,19 @@ function Wdodge() {
                                 <div className="w-full lg:w-1/2 px-4 flex items-stretch relative mb-16">
                                     <div className="absolute inset-0 z-10 px-4">
                                         <div className="w-full h-full">
-                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded"></div>
+                                            <div className="w-full h-full bg-doge-p transform rotate-3 rounded yellow_color_bg"></div>
                                         </div>
                                     </div>
                                     <div className="px-4 py-4 relative w-full shadow bg-white rounded z-20">
                                         <div className="relative z-20">
                                             <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                viewBox="0 0 512 512" className="w-24 h-24 text-doge-p text-center mx-auto"
+                                                viewBox="0 0 512 512" className="w-24 h-24 black_color text-center mx-auto"
                                                 height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M18.78 19.5v79.656c44.684 5.582 81.517 24.966 116.657 47.156l-24.75 20.063L212.47 218.28 184.53 106.5l-25.905 21c-20.225-40.01-42.778-77.73-72.75-108H18.78zm277.376 0c-15.624 28.765-29.207 58.126-41.78 88.156l-30.19-6.406 25.94 112.25 67.06-92.5-29.592-6.28c33.29-34.747 67.597-67.793 108.062-95.22h-99.5zm197.5 93.844c-37.988 2.482-72.04 19.677-105.03 40.906l-12.47-32.53-80.062 82.843 114.094 5.937-13.25-34.563c32.24-.934 64.478 1.827 96.718 21.375v-83.968zm-194.03 128.03c-5.28.12-10.21 2.416-16.938 9.595l-6.563 6.968-6.813-6.72c-7.387-7.28-13.216-9.29-19.125-9.03-5.908.26-12.855 3.367-20.625 9.656l-6.218 5.03-5.906-5.374c-8.9-8.052-16.485-10.438-23.75-10.063-5.288.274-10.775 2.266-16.25 5.75l40.968 73.688c15.454 9.452 47.033 13.007 68.75 2.063l39.594-73.344c-7.51-3.062-14.26-6.202-20.094-7.406-2.112-.437-4.072-.756-5.97-.813-.354-.01-.71-.008-1.06 0zm-89.97 96.19c-18.035 12.742-32.516 34.718-38.125 66.905-5.435 31.196 3.128 52.265 18.282 66.624 15.155 14.36 37.902 21.737 61 21.437 23.1-.3 46.136-8.31 61.625-22.936 15.49-14.627 24.25-35.426 19.282-65.188-5.137-30.757-18.4-52.148-35.19-65.094-28.482 15.056-64.094 11.856-86.874-1.75z">
                                                 </path>
                                             </svg></div>
-                                            <div className="text-center text-3xl text-doge-p font-medium mb-4">Stake profit</div>
+                                            <div className="text-center text-3xl black_color font-medium mb-4">Stake profit</div>
                                             <div className="text-xl text-doge-p">The profit (dividends) are accrued to your account
                                                 on a daily basis and in
                                                 real-time. You can withdraw the dividends at any time.</div>
@@ -557,14 +598,14 @@ function Wdodge() {
                             <div className="flex flex-wrap items-stretch lg:-mx-8">
                                 <div className="w-full lg:w-1/2 px-4 lg:px-8 relative mb-4 lg:mb-0">
                                     <div className="absolute px-8 py-4 inset-0 transform rotate-6">
-                                        <div className="bg-doge-s rounded w-full h-full"></div>
+                                        <div className="bg-doge-s yellow_color_bg rounded w-full h-full"></div>
                                     </div>
                                     <div
-                                        className="relative z-20 w-full h-full bg-doge-p rounded flex justify-center items-center text-white text-5xl lg:text-7xl font-medium py-4 px-4">
+                                        className="relative public_sale_card z-20 w-full h-full bg-doge-p rounded flex justify-center items-center text-white text-5xl lg:text-7xl font-medium py-4 px-4">
                                         About</div>
                                 </div>
                                 <div className="w-full lg:w-1/2 px-8">
-                                    <div className="text-center text-3xl text-doge-p font-medium mb-4">Introduction</div>
+                                    <div className="text-center text-3xl black_color font-medium mb-4">Introduction</div>
                                     <div className="text-xl text-doge-p">While Decentralized Finance (DeFi) continues to make waves
                                         and maintain its parabolic growth, yield farming remains a popular tool for generating
                                         returns from long-term holdings. For the uninitiated, yield farming is simply the act of
@@ -575,7 +616,7 @@ function Wdodge() {
                     </div>
                     <div className="py-16">
                         <div className="container mx-auto px-4 lg:px-32">
-                            <div className="font-medium text-center text-doge-p text-5xl lg:text-7xl mb-8">Partners</div>
+                            <div className="font-medium text-center text-doge-p black_color text-5xl lg:text-7xl mb-8">Partners</div>
                             <div className="flex flex-wrap">
                                 <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-1.png" alt=""
                                     className="object-contain w-full mx-auto" /></div>
@@ -590,12 +631,12 @@ function Wdodge() {
                     </div>
                     <div className="py-16" id="roadmap">
                         <div className="container mx-auto px-4 lg:px-32">
-                            <div className="text-center text-5xl lg:text-7xl text-doge-p font-medium mb-8">Roadmap</div>
+                            <div className="text-center text-5xl black_color lg:text-7xl text-doge-p font-medium mb-8">Roadmap</div>
                             <div className="text-center text-xl lg:text-3xl text-gray-700 mb-16">The coming months</div>
                             <div className="flex -mx-4 flex-wrap">
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p font-medium mb-4 text-center">Q2</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q2</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -680,7 +721,7 @@ function Wdodge() {
                                 </div>
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p font-medium mb-4 text-center">Q3</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q3</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -726,7 +767,7 @@ function Wdodge() {
                                 </div>
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p font-medium mb-4 text-center">Q4</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q4</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -772,7 +813,7 @@ function Wdodge() {
                                 </div>
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p font-medium mb-4 text-center">2022</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">2022</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -793,7 +834,7 @@ function Wdodge() {
                             </div>
                         </div>
                     </div>
-                    <div className="py-16 bg-doge-p text-white text-xl">
+                    <div className="py-16 bg-doge-p public_sale_card text-white text-xl">
                         <div className="container mx-auto px-4 lg:px-32">
                             <div className="flex items-center justify-between mb-4">
                                 <div className="flex items-center"><img src="logo.png" alt="" className="w-8 h-8" />

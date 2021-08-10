@@ -32,7 +32,7 @@ const getTimeDays = (time) => (time / daySeconds) | 0;
 export default function Timer() {
 
   
-  const deadLine = new Date(2021, 7, 10, 0, 0, 0, 0)/1000;// use UNIX timestamp in seconds
+  const deadLine = new Date(2021, 7, 30, 0, 0, 0, 0)/1000;// use UNIX timestamp in seconds
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
   const endTime = deadLine; 
   const remainingTime = endTime - stratTime;
@@ -40,7 +40,7 @@ export default function Timer() {
   const daysDuration = days * daySeconds;
   return (
     <div className="Timer">
-      <div className=' m-md-1 m-sm-1 m-2'>
+      <div className=' m-md-0 m-sm-1 m-2'>
         <CountdownCircleTimer
           {...timerProps}
           colors={[["#7E2E84"]]}
@@ -52,7 +52,7 @@ export default function Timer() {
           }
         </CountdownCircleTimer>
       </div>
-      <div className=' m-md-1 m-sm-1 m-2'>
+      <div className=' m-md-0 m-sm-1 m-2'>
         <CountdownCircleTimer
           {...timerProps}
           colors={[["#D14081"]]}
@@ -67,7 +67,7 @@ export default function Timer() {
           }
         </CountdownCircleTimer>
       </div>
-      <div className=' m-md-1 m-sm-1 m-2'>
+      <div className=' m-md-0 m-sm-1 m-2'>
         <CountdownCircleTimer
           {...timerProps}
           colors={[["#EF798A"]]}
@@ -82,7 +82,7 @@ export default function Timer() {
           }
         </CountdownCircleTimer>
       </div>
-      <div className=' m-md-1 m-sm-1 m-2'>
+      <div className=' m-md-0 m-sm-1 m-2'>
         <CountdownCircleTimer
           {...timerProps}
           colors={[["#218380"]]}

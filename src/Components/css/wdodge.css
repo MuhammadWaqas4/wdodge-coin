@@ -1,0 +1,46 @@
+.public_sale_card{
+  background-color: black !important;  
+}
+.public_sale_card_button{
+    background-color: yellow !important;
+    color: black !important;
+}
+.yellow_color{
+    color: yellow !important;
+}
+.yellow_color_bg{
+    background-color: yellow !important;
+}
+.black_color{
+    color: black !important;
+}
+.hoverColor:hover{
+    color: yellow !important;
+}
+.navbar_links{
+    color: white !important;
+    position: absolute !important;
+    right: 20px !important;
+    top: 10px !important;
+}
+/* .navbarBorder_position{
+    position: sticky !important;
+    top: 0px !important;
+} */
+
+@media(max-width:991px){
+    .navbar_links{
+        position: relative !important;
+        left: 0px !important;
+    }
+}
+@media(max-width:651px){
+    .navbarBorder{
+        border-bottom: 2px solid white !important;
+        /* border-width: 10px !important; */
+    }
+    .titleSize{
+        font-size: larger !important;
+        font-weight: bold !important;
+    }
+}
