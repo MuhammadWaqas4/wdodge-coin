@@ -266,13 +266,13 @@ function Wdodge() {
                             <div className="container mx-auto px-4 lg:px-32">
                                 <div className="flex justify-end"><a href="https://wmonero.net/"
                                     className="bg-gray-500 rounded-full text-white z-20 px-1 py-1 overflow-hidden">
-                                    <div
+                                    {/* <div
                                         className="text-white flex space-x-2 items-center px-2 py-1 bg-orange-400 rounded-full">
                                         <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
                                         <div className="font-bold">Live</div>
                                         <div className="underline lg:hidden">Dogem - Max Supply 36,666</div>
                                         <div className="underline hidden lg:block">Dogem - Max Supply 36,666</div>
-                                    </div>
+                                    </div> */}
                                 </a></div>
                             </div>
                         </div>
@@ -345,7 +345,7 @@ function Wdodge() {
                                 </div> */}
                             {/* </nav> */}
                             <div className="text-4xl lg:text-8xl font-bold mb-8">
-                                <div className="mb-4">Yield farm Dogecoin</div>
+                                <div className="mb-4">Yield farm Pontuschain</div>
                                 <div className="text-3xl lg:text-6xl mb-4">on Binance Smart Chain</div>
                             </div>
                             <div className="mb-8"><a href="#airdrop"
@@ -379,7 +379,7 @@ function Wdodge() {
                         </div>
                     </div>
                     <div className="container mx-auto px-4 lg:px-32 mb-8">
-                        <div className="max-w-lg mx-auto"><img src="partner.png" alt="" className="object-contain" /></div>
+                        {/* <div className="max-w-lg mx-auto"><img src="partner.png" alt="" className="object-contain" /></div> */}
                     </div>
                     <div className="container mx-auto px-4 lg:px-32 text-gray-100 mb-16">
                         <div className="flex lg:-mx-8 flex-wrap">
@@ -428,7 +428,7 @@ function Wdodge() {
 
                                                 15,000,000
 
-                                                wDOGE
+                                                pont...
                                                 /0.01 BNB
                                             </div>
                                             <div className="">
@@ -747,7 +747,7 @@ function Wdodge() {
                                                         d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z"
                                                         clip-rule="evenodd"></path>
                                                 </svg></div>
-                                                <div className="">Staking and Yield farm Dogecoin</div>
+                                                <div className="">Staking and Yield farm Pontuschain</div>
                                             </div>
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
