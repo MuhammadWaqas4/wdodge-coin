@@ -32,7 +32,7 @@ const getTimeDays = (time) => (time / daySeconds) | 0;
 export default function Timer() {
 
   
-  const deadLine = new Date(2021, 7, 15, 6, 42, 40, 0)/1000;// use UNIX timestamp in seconds
+  const deadLine = new Date(2021, 10, 0, 0, 0, 0, 0)/1000;// use UNIX timestamp in seconds
   const stratTime = Date.now() / 1000; // use UNIX timestamp in seconds
   const endTime = deadLine; 
   const remainingTime = endTime - stratTime;

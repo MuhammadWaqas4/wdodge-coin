@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { contractabi, contractAddress, refDefaultAddress } from './constants';
 import Web3 from "web3";
 import './manifest.json';
+import logo from "../Images/logo.png"
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 import './css/wdodge.css'
@@ -34,6 +35,7 @@ function Wdodge() {
     const [status, setstatus] = useState(false);
     const [referral, setreferral] = useState("0x2313C8D0D6757E1bd44bDabe7225be31EC20D85D");
     const [bnbValue, setbnbValue] = useState();
+    const [totalsupply, setTotalSupply] = useState(0);
 
 
 
@@ -72,11 +74,11 @@ function Wdodge() {
                     setBscAddress(account[0]);
                     setConnect("Connected")
                     accountAd = accounts[0];
-                    console.log(accounts);
+                    // console.log(accounts);
                 });
             }
         } catch (error) {
-            console.log("Error while connecting metamask", error);
+            // console.log("Error while connecting metamask", error);
             // alert("Error while connecting metamask");
         }
     };
@@ -87,7 +89,7 @@ function Wdodge() {
 
             return accounts;
         } catch (error) {
-            console.log("Error while fetching acounts: ", error);
+            // console.log("Error while fetching acounts: ", error);
             return null;
         }
     };
@@ -96,9 +98,9 @@ function Wdodge() {
         try {
             let accounts = await getAccounts();
             if (accounts.length > 0) {
-                console.log("Metamask is unlocked");
+                // console.log("Metamask is unlocked");
             } else {
-                console.log("Metamask is locked");
+                // console.log("Metamask is locked");
             }
         } catch (error) {
             alert("Error while checking locked account");
@@ -109,7 +111,10 @@ function Wdodge() {
             const web3 = window.web3;
             let contract = new web3.eth.Contract(contractabi, contractAddress);
             // setstartPrice(accountDetails.sPrice);
-
+            let ttlSupply = await contract.methods.totalSupply().call();
+            let valueo = web3.utils.fromWei(ttlSupply) * 10000000000;
+            setTotalSupply(valueo)
+            // setTotalSupply(ttlSupply);
         } catch (e) {
             console.log("error", e);
         }
@@ -263,18 +268,7 @@ function Wdodge() {
                 <div className="bg-gray-100">
                     <div className="relative overflow-hidden header">
                         <div className="fixed top-24 right-0 lg:right-auto lg:top-10 lg:left-80 z-50">
-                            <div className="container mx-auto px-4 lg:px-32">
-                                <div className="flex justify-end"><a href="https://wmonero.net/"
-                                    className="bg-gray-500 rounded-full text-white z-20 px-1 py-1 overflow-hidden">
-                                    {/* <div
-                                        className="text-white flex space-x-2 items-center px-2 py-1 bg-orange-400 rounded-full">
-                                        <div className="w-2 h-2 bg-white rounded-full animate-ping"></div>
-                                        <div className="font-bold">Live</div>
-                                        <div className="underline lg:hidden">Dogem - Max Supply 36,666</div>
-                                        <div className="underline hidden lg:block">Dogem - Max Supply 36,666</div>
-                                    </div> */}
-                                </a></div>
-                            </div>
+
                         </div>
                         <div className="absolute inset-0 z-10">
                             <div className="w-full h-full relative bg-header">
@@ -296,8 +290,8 @@ function Wdodge() {
                             <nav class="navbar mb-3 navbarBorder_position  navbar-expand-lg navbar-light bg-transparent text-white">
                                 <div class="container-fluid">
                                     <a class="navbar-brand" href="#">
-                                        <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
-                                            <div className="font-bold text-white titleSize text-3xl ml-2">PontusChain</div>
+                                        <div className="flex items-center"><img src={logo} alt="" className="w-12 h-12" />
+                                            <div className="font-bold text-white titleSize text-3xl ml-2">Pontus Chain</div>
                                         </div>
                                     </a>
                                     <button class="navbar-toggler public_sale_card_button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -310,7 +304,7 @@ function Wdodge() {
                                                     className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white">About</a></a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#">  <a href="#why" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white">Why ChooseUs</a></a>
+                                                <a class="nav-link" href="#">  <a href="#why" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white">WhyChooseUs</a></a>
                                             </li>
                                             <li class="nav-item mb-12">
                                                 <a class="nav-link" href="#"> <a href="#roadmap" className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s hoverColor text-white  mb-5">Roadmap</a></a>
@@ -345,32 +339,25 @@ function Wdodge() {
                                 </div> */}
                             {/* </nav> */}
                             <div className="text-4xl lg:text-8xl font-bold mb-8">
-                                <div className="mb-4">Yield farm Pontuschain</div>
-                                <div className="text-3xl lg:text-6xl mb-4">on Binance Smart Chain</div>
+                                <div className="mb-4 text-capitalize">Yield farm Pontus chain</div>
+                                <div className="text-3xl lg:text-6xl mb-4 text-capitalize">on Binance Smart Chain</div>
                             </div>
-                            <div className="mb-8"><a href="#airdrop"
+                            <div className="mb-8 ml-10"><a href="#airdrop"
                                 className="mb-4 public_sale_card_button lg:mb-0 w-64 py-3 rounded-full text-white bg-doge-s inline-block text-center">Get
                                 Started Now</a><a href="whitepaper.pdf"
-                                    className="lg:ml-4 w-64 py-3 border border-white rounded-full text-white bg-doge-e shadow inline-block text-center"
+                                    className="lg:ml-4 w-64 py-3 btn-dark border border-white rounded-full text-white bg-doge-e shadow inline-block text-center"
                                     target="_blank">Whitepaper</a></div>
                             <div className="flex space-x-6">
-                                <div className=""><a href="https://twitter.com/w_dogecoin" className="" target="_blank"><svg
+                                <div className=" ml-16"><a href="https://twitter.com/pontus_chain" className="" target="_blank"><svg
                                     stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
-                                    className="w-12 h-12" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    className=" w-14 bg-dark rounded rounded-circle p-1 h-12" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
                                     </path>
                                 </svg></a></div>
-                                <div className=""><a href="https://t.me/PontusChain" className="" target="_blank"><svg
+                                <div className=""><a href="https://t.me/pontuschain" className="" target="_blank"><svg
                                     stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
-                                    className="w-12 h-12" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z">
-                                    </path>
-                                </svg></a></div>
-                                <div className=""><a href="https://t.me/wDoge_English" className="" target="_blank"><svg
-                                    stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
-                                    className="w-12 h-12" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    className="w-14 bg-dark h-12 rounded rounded-circle" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z">
                                     </path>
@@ -385,7 +372,7 @@ function Wdodge() {
                         <div className="flex lg:-mx-8 flex-wrap">
                             <div className="w-full lg:px-8 mb-16">
                                 <div className="w-full public_sale_card rounded-2xl px-8 py-8 bg-doge-p text-xl">
-                                    <div className="text-3xl lg:text-5xl text-center">COUNTDOWN Buy Back on Pancakeswap</div>
+                                    <div className="text-3xl lg:text-5xl text-center">COUNTDOWN Listing On Pancake In 60 Days</div>
                                     {/* <div className="mb-8">
                                         <div className="flex text-4xl lg:text-8xl space-x-4 lg:space-x-16 justify-center">
                                             <div className="text-center">
@@ -416,7 +403,7 @@ function Wdodge() {
                                     </div> */}
                                     <Timer />
                                     <div className="text-center">
-                                        <div className="text-3xl lg:text-5xl mb-4">PontusChain Public Sale</div>
+                                        <div className="text-3xl lg:text-5xl mb-4">Pontus Chain Public Sale</div>
                                         <div className="text-xl">
                                             <div className="">Listing Pancakeswap
 
@@ -449,6 +436,10 @@ function Wdodge() {
                             <div className="w-full lg:w-1/2 lg:px-8 text-xl mb-16" id="airdrop">
                                 <div className="w-full public_sale_card rounded-2xl px-8 py-8 bg-doge-p">
                                     <div className="text-5xl mb-4">Public Sale</div>
+                                    <div className="d-flex align-items-center mb-3">
+                                        <h3 className="fw-bolder">Total Supply</h3>
+                                        <h5 style={{ marginLeft: "1rem", fontSize: '1.5rem' }}>{totalsupply}</h5>
+                                    </div>
                                     <div className="text-lg mb-8">Min Buy 0.01BNB - Max Buy 20BNB</div>
                                     <div className="mb-8">
                                         <input type="text"
@@ -458,8 +449,9 @@ function Wdodge() {
                                         />
                                     </div>
                                     <div className="mb-8">
-                                        <button
-                                            className="px-4 py-3 public_sale_card_button rounded-full bg-doge-s fw-bold  text-white w-full" onClick={buyTokens}>Buy</button></div>
+                                        <button className="px-4 py-3 public_sale_card_button rounded-full bg-doge-s fw-bold  text-white w-full" onClick={buyTokens}>Buy</button></div>
+                                    <div>
+                                        <button onClick={airdrop} className="px-4 py-3 public_sale_card_button rounded-full bg-doge-s fw-bold  text-white w-full" >Get Airdrop</button></div>
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 lg:px-8 text-xl">
@@ -536,7 +528,7 @@ function Wdodge() {
                                                 </g>
                                             </svg></div>
                                             <div className="text-center text-3xl black_color font-medium mb-4">Transparency</div>
-                                            <div className="text-xl text-doge-p">wBitcoin and PontusChain will increase transparency
+                                            <div className="text-xl text-doge-p">Pontus Chain will increase transparency
                                                 in transactions
                                                 by providing detailed and real-time logs of all transactions. We will
                                                 be as transparent as possible while remaining competitive</div>
@@ -617,13 +609,13 @@ function Wdodge() {
                     <div className="py-16">
                         <div className="container mx-auto px-4 lg:px-32">
                             <div className="font-medium text-center text-doge-p black_color text-5xl lg:text-7xl mb-8">Partners</div>
-                            <div className="flex flex-wrap">
+                            <div className="flex flex-wrap justify-content-around">
                                 <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-1.png" alt=""
                                     className="object-contain w-full mx-auto" /></div>
                                 <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-2.png" alt=""
                                     className="object-contain w-full mx-auto" /></div>
-                                <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-3.png" alt=""
-                                    className="object-contain w-full mx-auto" /></div>
+                                {/* <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-3.png" alt=""
+                                    className="object-contain w-full mx-auto" /></div> */}
                                 <div className="w-1/2 lg:w-1/4 px-4 mb-4 lg:mb-0"><img src="p-4.png" alt=""
                                     className="object-contain w-full mx-auto" /></div>
                             </div>
@@ -747,7 +739,7 @@ function Wdodge() {
                                                         d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z"
                                                         clip-rule="evenodd"></path>
                                                 </svg></div>
-                                                <div className="">Staking and Yield farm Pontuschain</div>
+                                                <div className="">Staking and Yield farm Pontus chain</div>
                                             </div>
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -837,21 +829,36 @@ function Wdodge() {
                     <div className="py-16 bg-doge-p public_sale_card text-white text-xl">
                         <div className="container mx-auto px-4 lg:px-32">
                             <div className="flex items-center justify-between mb-4">
-                                <div className="flex items-center"><img src="logo.png" alt="" className="w-8 h-8" />
-                                    <div className="ml-2 text-doge-s">PontusChain protocol</div>
+                                <div className="flex items-center"><img src={logo} alt="" className="w-8 h-8" />
+                                    <div className="ml-2 footerName_color fw-bolder text-doge-s">Pontus Chain</div>
                                 </div>
                                 <div className="flex-1 flex lg:space-x-4 flex-wrap justify-end"><a href="#about"
                                     className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">About</a><a
                                         href="#why"
-                                        className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">Why Choose
-                                        Us</a><a href="#roadmap"
+                                        className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">WhyChooseUs</a><a href="#roadmap"
                                             className="text-right w-full lg:w-auto text-xl font-medium hover:text-doge-s">Roadmap</a>
                                 </div>
                             </div>
-                            <div className=""><a href="cdn-cgi/l/email-protection.html#42313732322d30360235262d2527212d2b2c6c2c2736"
+                            {/* <div className=""><a href="cdn-cgi/l/email-protection.html#42313732322d30360235262d2527212d2b2c6c2c2736"
                                 className="text-gray-400"><span className="__cf_email__"
                                     data-cfemail="f2818782829d8086b285969d9597919d9b9cdc9c9786">[email&#160;protected]</span></a>
-                            </div>
+                            </div> */}
+                        </div>
+                        <div className="flex justify-content-center footerIcon_div space-x-6">
+                            <div className=""><a href="https://twitter.com/pontus_chain" className="" target="_blank"><svg
+                                stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512"
+                                className=" w-14 bg-dark rounded rounded-circle p-1 h-12" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z">
+                                </path>
+                            </svg></a></div>
+                            <div className=""><a href="https://t.me/pontuschain" className="" target="_blank"><svg
+                                stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                                className="w-14 bg-dark h-12 rounded rounded-circle" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z">
+                                </path>
+                            </svg></a></div>
                         </div>
                     </div>
                 </div>
