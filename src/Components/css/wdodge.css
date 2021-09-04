@@ -4,6 +4,7 @@
 .public_sale_card_button{
     background-color: orange !important;
     color: black !important;
+    font-weight: bolder;
 }
 .yellow_color{
     color: orange !important;
@@ -32,6 +33,13 @@
 } */
 .footerIcon_div{
     margin-top: -4rem;
+}
+.btnwidth{
+    width: 190px !important;
+    color: #fff !important;
+}
+.btnwidth2{
+    color: #fff !important;
 }
 @media(max-width:991px){
     .navbar_links{

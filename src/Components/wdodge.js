@@ -13,6 +13,7 @@ import './css/a065f9ef838eb7fb07f6.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Timer from "./Timer/Timer";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 
 function Wdodge() {
@@ -24,8 +25,8 @@ function Wdodge() {
     let interv = null;
     let accountAd;
     let getDirectFromUrl;
-    const [account, setAccount] = useState("Connect To Wallet");
-    const [Connect, setConnect] = useState("Connect");
+    const [account, setAccount] = useState("Metamask");
+    const [Connect, setConnect] = useState("WalletConnect");
     const [enteredAmount, setEnteredAmount] = useState(1000000000000000);
     const [inputValue, setInputValue] = useState(0);
     const [withdrawAmount, setwithdrawAmount] = useState(0);
@@ -36,10 +37,15 @@ function Wdodge() {
     const [referral, setreferral] = useState("0x2313C8D0D6757E1bd44bDabe7225be31EC20D85D");
     const [bnbValue, setbnbValue] = useState();
     const [totalsupply, setTotalSupply] = useState(0);
-
+    // const [account, setAccount] = useState("Metamask")
+    const [connectWallet, setConnectWallet] = useState("WalletConnect")
+    const [show, setShow] = useState(false)
+    const [showmeta, setShowMeta] = useState(true);
+    const [showwallet, setShowWallet] = useState(true);
 
 
     const loadWeb3 = async () => {
+        setShowWallet(false)
         let isConnected = false;
         try {
             if (window.ethereum) {
@@ -238,16 +244,105 @@ function Wdodge() {
             console.log("error", e)
         }
     };
-    useEffect(() => {
-        setInterval(() => {
-            if (account) {
-                loadWeb3();
-                // getTime();
+
+
+    const walletconnect = async () => {
+        setShowMeta(false)
+        let isConnected = false;
+        try {
+            // setErrorState(false);
+            console.log("This is   setErrorState(false);");
+            const provider = new WalletConnectProvider({
+                infuraId: "6d2b77cc1e1d45a7a12b25035aa39ce2",
+            });
+
+            //  Enable session (triggers QR Code modal)
+            await provider.enable();
+
+            if (provider) {
+                window.web3 = new Web3(provider);
+                isConnected = true;
             } else {
-                loadWeb3();
+                isConnected = false;
+                // setErrorState(true);
+                console.log("This is setErrorState(true)");
+                // let options = {};
+                // options = {
+                //   place: "tr",
+                //   message: "wallet connect is not connected",
+                //   type: "primary",
+                //   icon: "",
+                //   autoDismiss: 7,
+                // };
+                // notificationAlertRef.current.notificationAlert(options);
+                // // "Metamask is not installed, please install it on your browser to connect.",
             }
-        }, 1500);
-    }, []);
+            if (isConnected === true) {
+                const web3 = window.web3;
+                let accounts = await web3.eth.getAccounts();
+                web3.eth.net.getId().then((netId) => {
+                    console.log("(accounts[0], 2)", (accounts))
+
+                    setAccount(accounts[0])
+                    setConnectWallet(accounts[0]);
+                    accountAd = accounts[0];
+                    getData();
+                    switch (netId) {
+                        case 1:
+                            // getData(accounts[0], 2);
+                            console.log("(accounts[0], 2)", (accounts[0], 2))
+                            console.log("This is mainnet");
+                            break;
+                        case 2:
+                            console.log("This is the deprecated Morden test network.");
+                            break;
+                        case 3:
+                            console.log("This is the ropsten test network.");
+                            break;
+                        default:
+                            console.log("(accounts[0], 2)", (accounts[0], 1))
+                            // getData(accounts[0], 1);
+                            console.log("This is an unknown network.");
+                    }
+                });
+                // this.props.dispatch(login(accounts[0]));
+
+                window.ethereum.on("accountsChanged", function (accounts) {
+                    // this.props.dispatch(login(accounts[0]));
+                    web3.eth.net.getId().then((netId) => {
+                        switch (netId) {
+                            case 1:
+                                // getData(accounts[0], 2);
+                                console.log("This is mainnet");
+                                break;
+                            case 2:
+                                console.log("This is the deprecated Morden test network.");
+                                break;
+                            case 3:
+                                console.log("This is the ropsten test network.");
+                                break;
+                            default:
+                                // getData(accounts[0], 1);
+                                console.log("This is an unknown network.");
+                        }
+                    });
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        // setModal(false)
+        console.log("setErrorState(true)");
+    };
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         if (account) {
+    //             loadWeb3();
+    //         } else {
+    //             loadWeb3();
+    //         }
+    //     }, 1500);
+    // }, []);
 
     return (
         <>
@@ -314,8 +409,20 @@ function Wdodge() {
                                 </div>
                             </nav>
 
+                            <div className="text-end mb-2">
+                                {show ?
+                                    <div >
+                                        {showmeta && <button onClick={loadWeb3} className="btn btnwidth text-light public_sale_card_button text-truncate  mt-3  mt-md-0 text-truncate mar border border-left-4 btn-light fw-bolder btnWidth   p-2 fs-5">{account}</button>}
+                                        {showwallet && <button onClick={walletconnect} className="btn btnwidth btnwidth2 ml-5 public_sale_card_button  mt-3  mt-md-0 marginLeft1  text-truncate btn-light fw-bolder btnWidth   p-2 fs-5">{connectWallet}</button>}
+                                    </div>
+                                    :
+                                    <div>
+                                        <button onClick={() => setShow(true)} className="btn btnwidth public_sale_card_button public_sale_card_button text-truncate btn-light fw-bolder btnWidth   p-2 fs-5">Connect</button>
+                                    </div>
+                                }
 
 
+                            </div>
 
 
                             {/* <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
@@ -407,7 +514,7 @@ function Wdodge() {
                                         <div className="text-xl">
                                             <div className="">Listing Pancakeswap
 
-                                                August 15th 2021, 08:42
+                                                October 28th 2021, 00:00
 
                                                 (your time)
                                             </div>
@@ -628,7 +735,7 @@ function Wdodge() {
                             <div className="flex -mx-4 flex-wrap">
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q2</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Phase 1</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -713,7 +820,7 @@ function Wdodge() {
                                 </div>
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q3</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Phase 2</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
@@ -759,7 +866,7 @@ function Wdodge() {
                                 </div>
                                 <div className="w-full lg:w-1/4 px-4 mb-8">
                                     <div className="w-full rounded-xl shadow-xl p-4">
-                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Q4</div>
+                                        <div className="text-5xl text-doge-p black_color font-medium mb-4 text-center">Phase 3</div>
                                         <div className="text-xl text-doge-p">
                                             <div className="flex items-center">
                                                 <div className=""><svg stroke="currentColor" fill="currentColor" stroke-width="0"
