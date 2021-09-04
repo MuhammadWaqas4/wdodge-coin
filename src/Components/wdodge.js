@@ -15,6 +15,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import Timer from "./Timer/Timer";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
+import cW from '../Images/cW.png';
+import mM from '../Images/mM.png';
+
 
 function Wdodge() {
     const [navtoken, upNavToken] = useState("Connect");
@@ -40,12 +43,12 @@ function Wdodge() {
     // const [account, setAccount] = useState("Metamask")
     const [connectWallet, setConnectWallet] = useState("WalletConnect")
     const [show, setShow] = useState(false)
-    const [showmeta, setShowMeta] = useState(true);
-    const [showwallet, setShowWallet] = useState(true);
+    const [showmeta, setShowMeta] = useState(false);
+    const [showwallet, setShowWallet] = useState(false);
 
 
     const loadWeb3 = async () => {
-        setShowWallet(false)
+        setShowMeta(true)
         let isConnected = false;
         try {
             if (window.ethereum) {
@@ -247,7 +250,7 @@ function Wdodge() {
 
 
     const walletconnect = async () => {
-        setShowMeta(false)
+        setShowWallet(true)
         let isConnected = false;
         try {
             // setErrorState(false);
@@ -409,8 +412,9 @@ function Wdodge() {
                                 </div>
                             </nav>
 
-                            <div className="text-end mb-2">
-                                {show ?
+                            <div className="text-end">
+                                {/* jawad */}
+                                {/* {show ?
                                     <div >
                                         {showmeta && <button onClick={loadWeb3} className="btn btnwidth text-light public_sale_card_button text-truncate  mt-3  mt-md-0 text-truncate mar border border-left-4 btn-light fw-bolder btnWidth   p-2 fs-5">{account}</button>}
                                         {showwallet && <button onClick={walletconnect} className="btn btnwidth btnwidth2 ml-5 public_sale_card_button  mt-3  mt-md-0 marginLeft1  text-truncate btn-light fw-bolder btnWidth   p-2 fs-5">{connectWallet}</button>}
@@ -419,10 +423,28 @@ function Wdodge() {
                                     <div>
                                         <button onClick={() => setShow(true)} className="btn btnwidth public_sale_card_button public_sale_card_button text-truncate btn-light fw-bolder btnWidth   p-2 fs-5">Connect</button>
                                     </div>
+                                } */}
+
+
+                                {show ?
+                                    <div >
+                                        {showmeta && <button  className="btn btnwidth text-light public_sale_card_button text-truncate  mt-3  mt-md-0 text-truncate mar border border-left-4 btn-light fw-bolder btnWidth   p-2 fs-5">{account}</button>}
+                                        {showwallet && <button  className="btn btnwidth btnwidth2 ml-5 public_sale_card_button  mt-3  mt-md-0 marginLeft1  text-truncate btn-light fw-bolder btnWidth   p-2 fs-5">{connectWallet}</button>}
+                                    </div>
+                                    :
+                                    <div>
+                                    <button onClick={() => setShow(true)} type="button" class="btn btn-primary public_sale_card_button btnwidth" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Connect
+                                </button>
+                                    </div>
                                 }
 
 
+
                             </div>
+
+                            {/* <!-- Modal --> */}
+
 
 
                             {/* <div className="flex items-center"><img src="logo.png" alt="" className="w-12 h-12" />
@@ -966,6 +988,17 @@ function Wdodge() {
                                     d="M446.7 98.6l-67.6 318.8c-5.1 22.5-18.4 28.1-37.3 17.5l-103-75.9-49.7 47.8c-5.5 5.5-10.1 10.1-20.7 10.1l7.4-104.9 190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8 284 16.2 252.2c-22.1-6.9-22.5-22.1 4.6-32.7L418.2 66.4c18.4-6.9 34.5 4.1 28.5 32.2z">
                                 </path>
                             </svg></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* jawad */}
+            <div class="modal    fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body bg-light rounded rounded-3 d-flex justify-content-around  p-10">
+                            <button type="button" onClick={loadWeb3} class="btn to-white fw-bolder btn-secondary public_sale_card_button py-2 d-flex align-items-center h-12 px-sm-3 btnwidth2 px-1" data-bs-dismiss="modal"><img className="logo1" src={mM} alt="" />{account}</button>
+                            <button type="button" onClick={walletconnect} class="btn to-white fw-bolder btn-primary public_sale_card_button d-flex align-items-center h-12 p-sm-2 px-1 btnwidth2" data-bs-dismiss="modal"> <img className="logo2" src={cW} alt="" /> WalletConnect</button>
                         </div>
                     </div>
                 </div>

@@ -41,6 +41,14 @@
 .btnwidth2{
     color: #fff !important;
 }
+.logo1{
+width: 120px !important;
+margin-right: -28px !important;
+margin-left: -33px !important;
+}
+.logo2{
+    width: 50px !important;
+    }
 @media(max-width:991px){
     .navbar_links{
         position: relative !important;
@@ -59,4 +67,12 @@
     .footerIcon_div{
         margin-top: 0rem;
     }
+    .logo1{
+        width: 80px !important;
+        margin-right: -24px !important;
+        margin-left: -25px !important;
+        }
+        .logo2{
+            width: 30px !important;
+            }
 }
